@@ -1,3 +1,7 @@
+*** v1.4 ****************************
+
+ - moved to standalone chips. Moved splitter to this PCB. Added headers for unused pins
+
 *** v1.3 ****************************
 
  - Fixed critical problem with PCB layout, where 5V rail was shorted to GND on one of the diode pins of D1.

@@ -1,5 +1,6 @@
 (fp_lib_table
-  (version 7)
-  (lib (name "ROB-14450")(type "KiCad")(uri "${KIPRJMOD}/libraries/ROB-14450")(options "")(descr ""))
-  (lib (name "DCDC_Converter")(type "KiCad")(uri "${KIPRJMOD}/libraries/DCDC_Converter")(options "")(descr ""))
+	(version 7)
+	(lib (name "ROB-14450") (type "KiCad") (uri "${KIPRJMOD}/libraries/ROB-14450") (options "") (descr ""))
+	(lib (name "DCDC_Converter") (type "KiCad") (uri "${KIPRJMOD}/libraries/DCDC_Converter") (options "") (descr ""))
+	(lib (name "Additions") (type "KiCad") (uri "${KIPRJMOD}/project_lib.pretty") (options "") (descr "Additions since 1.3"))
 )
