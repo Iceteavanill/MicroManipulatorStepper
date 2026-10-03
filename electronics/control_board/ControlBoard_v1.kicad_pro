@@ -50,7 +50,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "border_display_style": 1,
+          "border_display_style": 2,
           "border_hatch_pitch": 0.5,
           "corner_radius": 0.0,
           "corner_smoothing": 0,
@@ -60,11 +60,11 @@
           "hatch_smoothing_level": 0,
           "hatch_smoothing_value": 0.1,
           "hatch_thickness": 1.0,
-          "min_clearance": 0.0,
+          "min_clearance": 0.25,
           "min_island_area": 10.0,
-          "min_thickness": 0.3,
+          "min_thickness": 0.25,
           "pad_connection": 2,
-          "remove_islands": 1,
+          "remove_islands": 0,
           "thermal_relief_gap": 0.25,
           "thermal_relief_spoke_width": 0.5
         }
@@ -616,7 +616,7 @@
       "method": 0,
       "sort_order": 1
     },
-    "bom_export_filename": "Exports\\dual_use_board.csv",
+    "bom_export_filename": "production\\ControlBoard_v1.csv",
     "bom_fmt_presets": [],
     "bom_fmt_settings": {
       "field_delimiter": ",",
@@ -767,6 +767,12 @@
           "group_by": false,
           "label": "Distributor Number",
           "name": "Distributor Number",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "Sim.Pins",
+          "name": "Sim.Pins",
           "show": false
         }
       ],
@@ -826,7 +832,7 @@
         "uuid": "3400d92c-7e4d-4a5b-b52b-9a6c5042a8af"
       }
     ],
-    "used_designators": "#PWR1-78,R1-12,RJ1,J1-15,U1-7,C1-26,F1,A1,D1-5,H1-6,TP1-3",
+    "used_designators": "#PWR1-79,R1-12,RJ1,J1-15,U1-7,C1-26,F1,A1,D1-6,H1-6,TP1-3",
     "variants": []
   },
   "sheets": [
