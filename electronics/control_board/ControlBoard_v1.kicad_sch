@@ -4819,6 +4819,16 @@
 		)
 		(uuid "03c72df3-37e5-462d-9e22-3342ce9fba1e")
 	)
+	(text "Only populate if J6\nis used as I2C"
+		(exclude_from_sim no)
+		(at 100.076 258.318 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "03d57197-99bb-45a0-aedf-477ff1cc6987")
+	)
 	(text "Encoder 2"
 		(exclude_from_sim no)
 		(at 340.106 73.66 0)
@@ -4975,9 +4985,9 @@
 		)
 		(uuid "62e14ae4-0f28-43c4-be73-2fb7141e2cbc")
 	)
-	(text "optional\n(IC's have \ninternal\npulldowns)"
+	(text "optional, keeps\nen low until\ninternal pulldowns\ncan be configured\n(IC's have internal\npulldowns)"
 		(exclude_from_sim no)
-		(at 102.108 273.558 0)
+		(at 101.6 272.542 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12209,7 +12219,7 @@
 				)
 			)
 		)
-		(property "Distributor Number" "455-B6B-XH-A-ND"
+		(property "Distributor Number" "455-1708-ND"
 			(at 317.5 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -15937,7 +15947,7 @@
 				)
 			)
 		)
-		(property "Distributor Number" "455-B6B-XH-A-ND"
+		(property "Distributor Number" "455-1708-ND"
 			(at 317.5 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -19017,7 +19027,7 @@
 				)
 			)
 		)
-		(property "Distributor Number" "455-B4B-XH-A-ND"
+		(property "Distributor Number" "455-1706-ND"
 			(at 300.99 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -19930,7 +19940,7 @@
 				)
 			)
 		)
-		(property "Distributor Number" "455-B6B-XH-A-ND"
+		(property "Distributor Number" "455-1708-ND"
 			(at 317.5 74.93 0)
 			(hide yes)
 			(show_name no)
