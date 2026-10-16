@@ -101,6 +101,8 @@ void main_core0() {
 }
 
 void main_core1() {
+  // allow core 0 to pause this core (in RAM) while it writes to flash (LittleFS)
+  multicore_lockout_victim_init();
   LOG_INFO("Starting servo controll loops on core 1...");
 
   uint64_t last_time = time_us_64();
@@ -124,7 +126,7 @@ void setup() {
   
   led_blink(0, 0, 30, 3, 100);
   // stdio_init_all();  // Initializes USB or UART stdio
-  overclock();
+  // overclock();
   // Serial.begin(921600);
   Logger::instance().begin(921600, false);
   #ifndef DEMO_MODE

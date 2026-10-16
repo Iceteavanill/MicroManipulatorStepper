@@ -133,7 +133,7 @@ void Robot::init() {
 
 void Robot::update_command_parser() {
   // process serial input
-  if (Serial.available()) {
+  if (!command_parser.is_command_ready() && Serial.available()) {
     char c = Serial.read();
     command_parser.add_input_character(c);
     // Serial.write(c);
@@ -406,8 +406,11 @@ bool Robot::calibrate_joint(int joint_idx, bool store_calibration, bool print_me
   // joint->servo_controller->move_to_open_loop(0.05f, 1.0);
   shared_data.joint_target_positions[joint_idx] = 0; // joint->servo_controller->read_position();
 
-  if(store_calibration)
+  if(store_calibration){
+    multicore_lockout_start_blocking();
     joint->store_calibration();
+    multicore_lockout_end_blocking();
+  }
 
   // servo updates may continue here
   spin_unlock_unsafe(joints_spin_lock);
@@ -522,6 +525,41 @@ void Robot::process_machine_command(const GCodeCommand& cmd, std::string& reply)
     reply += "ok\n";
     return;
   }
+
+  // get live target position (current servo setpoints) and measured position (encoders)
+  if(cmd.get_command() == "M54") {
+    float target_joint_pos[NUM_JOINTS];
+    float measured_joint_pos[NUM_JOINTS];
+
+    spin_lock_unsafe_blocking(shared_data.lock);
+    for(int i=0; i<NUM_JOINTS; i++)
+      target_joint_pos[i] = shared_data.joint_target_positions[i];
+    spin_unlock_unsafe(shared_data.lock);
+
+    spin_lock_unsafe_blocking(joints_spin_lock);
+    for(int i=0; i<NUM_JOINTS; i++)
+      measured_joint_pos[i] = joints[i]->servo_controller->read_position();
+    spin_unlock_unsafe(joints_spin_lock);
+
+    Pose6DF target_pose, measured_pose;
+    bool target_ok = kinematic_model->foreward(target_joint_pos, target_pose);
+    bool measured_ok = kinematic_model->foreward(measured_joint_pos, measured_pose);
+
+    auto pose_line = [](const char* prefix, bool ok, const Pose6DF& pose) {
+      if(!ok)
+        return std::string(prefix) + " invalid\n";
+      return std::string(prefix) +
+             " X" + std::to_string(pose.translation.x) +
+             " Y" + std::to_string(pose.translation.y) +
+             " Z" + std::to_string(pose.translation.z) + "\n";
+    };
+
+    reply += pose_line("T", target_ok, target_pose);
+    reply += pose_line("M", measured_ok, measured_pose);
+    reply += "ok\n";
+    return;
+  }
+
 
   // set servo loop parameters
   if(cmd.get_command() == "M55") {
